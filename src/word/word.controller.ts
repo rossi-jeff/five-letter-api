@@ -1,4 +1,12 @@
-import { Controller, Get, Post, HttpStatus, Body, Res } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  HttpStatus,
+  Body,
+  Res,
+  Param,
+} from '@nestjs/common';
 import { WordService } from './word.service';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import {
@@ -19,6 +27,14 @@ export class WordController {
   @ApiResponse({ status: 200, description: 'OK', type: ResponseRandomDto })
   async random(@Res() response: Response) {
     response.status(HttpStatus.OK).send(await this.wordService.random());
+  }
+
+  @Get(':Index')
+  @ApiResponse({ status: 200, description: 'OK', type: ResponseRandomDto })
+  async byIndex(@Res() response: Response, @Param('Index') Index: string) {
+    response
+      .status(HttpStatus.OK)
+      .send(await this.wordService.byIndex(parseInt(Index)));
   }
 
   @Post('available')

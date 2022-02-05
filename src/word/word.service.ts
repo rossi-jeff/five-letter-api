@@ -28,6 +28,12 @@ export class WordService {
     return { Word, Index };
   }
 
+  async byIndex(Index: number) {
+    if (!this.wordList.length) await this.loadWords();
+    const Word = this.wordList[Index];
+    return { Word, Index };
+  }
+
   async available(DTO: BodyAvailableDto) {
     const { Green, Brown, Gray } = DTO;
     if (!this.wordList.length) await this.loadWords();
