@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/jeffross/applications/five-letter-api.jeff-rossi.com
+    - /bin/cp -r * $DEPLOYPATH
